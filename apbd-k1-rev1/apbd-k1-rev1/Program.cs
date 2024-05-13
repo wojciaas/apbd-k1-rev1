@@ -1,5 +1,4 @@
 using System.Data.SqlClient;
-using apbd_k1_rev1.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +9,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<SqlConnection>(sp => new SqlConnection(
     sp.GetService<IConfiguration>()
-        .GetConnectionString("Default")
-    ));
-builder.Services.AddScoped<IUnitOfWork>(sp => new UnitOfWork(sp.GetRequiredService<SqlConnection>()));
+    .GetConnectionString("Default")
+));
 
 var app = builder.Build();
 
